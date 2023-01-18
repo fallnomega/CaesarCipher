@@ -1,54 +1,49 @@
-def encrypt(message, shifting):
-    testing_original = ""
-    encrypted = ""
-    for x in message:
-        testing_original += x
-        temp_position = (alphabet.index(x))
-        if temp_position + int(shifting) > 25:
-            reverse_index_pos = ((temp_position + int(shifting)) - 25)
-            encrypted += alphabet[reverse_index_pos - 1]
-            # alphabet.reverse()
-            # print(alphabet)
-        else:
-            encrypted+=alphabet[temp_position + int(shifting)]
-    print (f"The original text is {testing_original}")
-    print (f"The encoded text is {encrypted}")
+def caeser(message,shifting,direction_to_go):
+    if direction_to_go == "encode":
+        testing_original = ""
+        encrypted = ""
+        for x in message:
+            testing_original += x
+            temp_position = (alphabet.index(x))
+            if temp_position + int(shifting) > 25:
+                reverse_index_pos = ((temp_position + int(shifting)) - 25)
+                encrypted += alphabet[reverse_index_pos - 1]
+                # alphabet.reverse()
+                # print(alphabet)
+            else:
+                encrypted += alphabet[temp_position + int(shifting)]
+        print(f"The original text is {testing_original}")
+        print(f"The encoded text is {encrypted}")
+    elif direction_to_go == "decode":
+        testing_original = ""
+        decoded = ""
+        # print (f"message: {message}")
+        for x in message:
+            testing_original += x
+            temp_position = (alphabet.index(x))
+            if temp_position + int(shifting) < 25:
+                reverse_index_pos = (temp_position - int(shifting))
+                # print(f"26 - temp position {temp_position} - {shifting} shifting = {reverse_index_pos} reverse_index_pos")
 
-def decrypt(message, shifting):
-    testing_original = ""
-    decoded = ""
-    # print (f"message: {message}")
-    for x in message:
-        testing_original+=x
-        temp_position =  (alphabet.index(x))
-        if temp_position + int(shifting) < 25:
-            reverse_index_pos = (temp_position - int(shifting))
-            # print(f"26 - temp position {temp_position} - {shifting} shifting = {reverse_index_pos} reverse_index_pos")
+                # print(reverse_index_pos)
+                decoded += alphabet[reverse_index_pos]
+            else:
+                decoded += alphabet[temp_position - int(shifting)]
+        print(f"The encoded text is {testing_original}")
+        print(f"The decoded text is {decoded}")
+    else:
+        print(f"{direction_to_go} is invalid")
 
-            # print(reverse_index_pos)
-            decoded += alphabet[reverse_index_pos]
-        else:
-            decoded+=alphabet[temp_position - int(shifting)]
-    print (f"The encoded text is {testing_original}")
-    print (f"The decoded text is {decoded}")
-    return
-
-#TODO-1: Combine the encrypt() and decrypt() functions into a single function called caesar().
-#TODO-2: Call the caesar() function, passing over the 'text', 'shift' and 'direction' values.
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 # direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-direction="decode"
+direction="encode"
 # text = input("Type your message:\n").lower()
 # text = "ezqz".lower()
-text = "ezqz".lower()
+text = "hello".lower()
 # shift = int(input("Type the shift number:\n"))
 shift = "5"
-if direction=="encode":
-    encrypt(text,shift)
-elif direction=="decode":
-    decrypt (text,shift)
-else:
-    print(f"{direction} is invalid")
+
+caeser(message=text,shifting=shift,direction_to_go=direction)
 
   #e.g.
   #cipher_text = "mjqqt"
