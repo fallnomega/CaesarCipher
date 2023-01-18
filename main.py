@@ -39,6 +39,7 @@ def caeser(message,shifting,direction_to_go):
     else:
         print(f"{direction_to_go} is invalid")
 
+print(45 % 26)
 
 #TODO-2: What if the user enters a shift that is greater than the number of letters in the alphabet?
 # Try running the program and entering a shift number of 45.
